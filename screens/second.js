@@ -1,6 +1,7 @@
 import React from 'react'
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View} from 'react-native'
+import { Marker, MapView } from 'react-native-maps';
 
 const styles = StyleSheet.create({
     container: {
