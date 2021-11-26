@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
@@ -6,17 +6,34 @@ import MapView, { Marker } from "react-native-maps";
 const Start = () => {
   const bottomBestiah = {
     latitude: 61.97379615618893,
-    longtitude: 129.90434473580075,
+    longitude: 129.90434473580075,
   };
 
   const darkLah = {
     latitude: 62.10629142237101,
-    longtitude: 129.8065651657179,
+    longitude: 129.8065651657179,
   };
   const micro203 = {
     latitude: 62.04819300049562,
-    longtitude: 129.77405489495698,
+    longitude: 129.77405489495698,
   };
+
+  const way = [{
+    latitude: 62.10629142237101,
+    longitude: 129.8065651657179,
+  },{
+    latitude: 62.10629142237101,
+    longitude: 129.8065651657179,
+  },{
+    latitude: 62.10629142237101,
+    longitude: 129.8065651657179,
+  }]
+
+
+
+  useEffect(()=>{
+    s
+  })
 
   return (
     <View>
@@ -37,8 +54,8 @@ const Start = () => {
         }}
       >
         <Marker
-          title={"MMM"}
-          coordinate={{bottomBestiah}}
+          title={"Нижний Бестях"}
+          coordinate={micro203}
         ></Marker>
       </MapView>
       <StatusBar style="auto" />
