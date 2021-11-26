@@ -31,14 +31,9 @@ const Start = () => {
 
 
 
-  useEffect(()=>{
-    s
-  })
 
   return (
     <View>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>In the name of the BJladika!</Text>
       <MapView
         style={{
           width: "100%",
