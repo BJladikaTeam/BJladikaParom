@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Button,
@@ -12,10 +12,11 @@ import {
 import MapView, { Marker, Callout } from "react-native-maps";
 import { Searchbar } from "react-native-paper";
 import CustomCallout from "../components/customCallout";
-import Icon2 from 'react-native-vector-icons/FontAwesome5';
+import Icon2 from "react-native-vector-icons/FontAwesome5";
+import SearchableDropdown from "react-native-searchable-dropdown";
+import SearchableDropDown from "react-native-searchable-dropdown";
 
 const styles = StyleSheet.create({
-
   screen: {
     flex: 1,
     justifyContent: "center",
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 100,
     backgroundColor: "orange",
-    marginStart: 5
+    marginStart: 5,
   },
   roundButton2: {
     marginStart: 5,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "lightblue",
     alignSelf: "center",
-    position: "absolute"
+    position: "absolute",
   },
   containerContent: { flex: 1, marginTop: 40 },
   containerHeader: {
@@ -76,11 +77,11 @@ const styles = StyleSheet.create({
   },
   container: {
     ...StyleSheet.absoluteFillObject,
-    flexDirection: "column"
+    flexDirection: "column",
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-    marginTop: 35
+    marginTop: 35,
   },
 });
 
@@ -96,24 +97,16 @@ const Start = ({ navigation }) => {
 
   const [listButtons, setListButtons] = useState(initialButtons);
 
-  const data = [
+  const items = [
     {
-      gorod: "sdasd",
+      id: 1,
+      name: "Жатай",
+
     },
     {
-      gorod: "sdf",
-    },
-    {
-      gorod: "dshgfs",
-    },
-    {
-      gorod: "dfhjsd",
-    },
-    {
-      gorod: "dshgfs",
-    },
-    {
-      gorod: "dshgfs",
+      id: 2,
+      name: "Техтюр",
+      key: 1,
     },
   ];
 
@@ -129,6 +122,11 @@ const Start = ({ navigation }) => {
   const micro203 = {
     latitude: 62.04819300049562,
     longitude: 129.77405489495698,
+  };
+
+  const randomPoint1 = {
+    latitude: 62.04934577086408,
+    longitude: 129.7917830407309,
   };
 
   const way = [
@@ -193,6 +191,21 @@ const Start = ({ navigation }) => {
           </Callout>
         </Marker>
 
+        <Marker title={"98"} coordinate={randomPoint1}>
+          <Callout
+            style={{ borderRadius: 100 }}
+            onPress={() => {
+              navigation.navigate("ModalShipDetail");
+            }}
+          >
+            <View style={{ borderRadius: 25 }}>
+              <Icon2 name="biking" size={30} />
+              <Text>Лодочка</Text>
+              <Text>Вставить кнопки, дизайн</Text>
+            </View>
+          </Callout>
+        </Marker>
+
         <Marker title={"Нижний Бестях"} coordinate={bottomBestiah}>
           <Callout
             alphaHitTest
@@ -224,9 +237,50 @@ const Start = ({ navigation }) => {
         onChangeText={onChangeSearch}
         value={searchQuery}
         style={{
-          marginTop: 35
+          marginTop: 35,
         }}
       />
+
+      <SearchableDropdown
+        multi={true}
+        onItemSelect={(item) => {
+          const items = selectedItems;
+          items.push(item);
+          this.setState({ selectedItems: items });
+        }}
+        containerStyle={{ padding: 5, backgroundColor: "white" }}
+        itemStyle={{
+          padding: 10,
+          marginTop: 2,
+          marginStart: 10,
+          marginEnd: 10,
+          backgroundColor: "#ddd",
+          borderColor: "#bbb",
+          borderWidth: 1,
+          borderRadius: 5,
+        }}
+        itemTextStyle={{ color: "#222" }}
+        itemsContainerStyle={{ maxHeight: 140 }}
+        items={items}
+        defaultIndex={2}
+        chip={true}
+        resetValue={false}
+        textInputProps={{
+          placeholder: "placeholder",
+          underlineColorAndroid: "transparent",
+          style: {
+            padding: 12,
+            borderWidth: 1,
+            borderColor: "#ccc",
+            borderRadius: 5,
+          },
+          onTextChange: (text) => alert(text),
+        }}
+        listProps={{
+          nestedScrollEnabled: true,
+        }}
+      />
+
       {/* {activeSearch ? data?.filter(megaFilter)=>{return <Text>{object.gorod}</Text>}) : null} */}
 
       <View style={{ marginTop: 10, flexDirection: "row" }}>
@@ -237,14 +291,14 @@ const Start = ({ navigation }) => {
           }}
           style={styles.roundButton1}
         >
-          <Icon2 name="chrome" size={30}/>
+          <Icon2 name="chrome" size={30} />
         </TouchableOpacity>
         {show == true ? (
           <TouchableOpacity
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Icon2 name="star" size={30}/>
+            <Icon2 name="star" size={30} />
           </TouchableOpacity>
         ) : null}
         {show == true ? (
@@ -252,7 +306,7 @@ const Start = ({ navigation }) => {
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Icon2 name="info-circle" size={30}/>
+            <Icon2 name="info-circle" size={30} />
           </TouchableOpacity>
         ) : null}
         {show == true ? (
@@ -260,7 +314,7 @@ const Start = ({ navigation }) => {
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Icon2 name="sliders-h" size={30}/>
+            <Icon2 name="sliders-h" size={30} />
           </TouchableOpacity>
         ) : null}
       </View>

@@ -8,6 +8,7 @@ import Start from "../screens/start";
 import TabNavigator from "../navigator/tabNavigator";
 import Modal from "../screens/modal";
 import Modal2 from "../screens/modal2";
+import ModalShipDetail from "../screens/modalShipDetail";
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,18 @@ const RootStackNavigator = () => {
             },
           }}
           component={Modal2}
+        />
+        <Stack.Screen
+          name="ModalShipDetail"
+          options={{
+            headerShown: false,
+            cardStyleInterpolator:
+              CardStyleInterpolators.forModalPresentationIOS,
+            cardStyle: {
+              backgroundColor: "transparent",
+            },
+          }}
+          component={ModalShipDetail}
         />
       </Stack.Group>
     </Stack.Navigator>
