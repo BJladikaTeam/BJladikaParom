@@ -9,6 +9,8 @@ import TabNavigator from "../navigator/tabNavigator";
 import Modal from "../screens/modal";
 import Modal2 from "../screens/modal2";
 import ModalShipDetail from "../screens/modalShipDetail";
+import PageShipDetail from "../screens/pageShipDetail";
+import ProfileUser from "../screens/profileUser";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,20 @@ const RootStackNavigator = () => {
         <Stack.Screen
           name="Home"
           component={TabNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MegaMind"
+          component={PageShipDetail}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileUser}
           options={{
             headerShown: false,
           }}

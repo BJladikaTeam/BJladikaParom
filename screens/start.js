@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "orange",
     marginStart: 5,
+    marginTop: 10
   },
   roundButton2: {
     marginStart: 5,
@@ -101,7 +102,6 @@ const Start = ({ navigation }) => {
     {
       id: 1,
       name: "Жатай",
-
     },
     {
       id: 2,
@@ -232,92 +232,95 @@ const Start = ({ navigation }) => {
         </Marker>
       </MapView>
 
-      <Searchbar
+      {/* <Searchbar
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
         style={{
           marginTop: 35,
         }}
-      />
-
-      <SearchableDropdown
-        multi={true}
-        onItemSelect={(item) => {
-          const items = selectedItems;
-          items.push(item);
-          this.setState({ selectedItems: items });
-        }}
-        containerStyle={{ padding: 5, backgroundColor: "white" }}
-        itemStyle={{
-          padding: 10,
-          marginTop: 2,
-          marginStart: 10,
-          marginEnd: 10,
-          backgroundColor: "#ddd",
-          borderColor: "#bbb",
-          borderWidth: 1,
-          borderRadius: 5,
-        }}
-        itemTextStyle={{ color: "#222" }}
-        itemsContainerStyle={{ maxHeight: 140 }}
-        items={items}
-        defaultIndex={2}
-        chip={true}
-        resetValue={false}
-        textInputProps={{
-          placeholder: "placeholder",
-          underlineColorAndroid: "transparent",
-          style: {
-            padding: 12,
-            borderWidth: 1,
-            borderColor: "#ccc",
-            borderRadius: 5,
-          },
-          onTextChange: (text) => alert(text),
-        }}
-        listProps={{
-          nestedScrollEnabled: true,
-        }}
-      />
+      /> */}
 
       {/* {activeSearch ? data?.filter(megaFilter)=>{return <Text>{object.gorod}</Text>}) : null} */}
 
-      <View style={{ marginTop: 10, flexDirection: "row" }}>
+      <View style={{ marginTop: 35, flexDirection: "row" }}>
         <TouchableOpacity
           onPress={() => {
-            show == true ? setShow(false) : setShow(true);
+            //show == true ? setShow(false) : setShow(true);
             console.log(show);
+            navigation.push("Profile");
           }}
           style={styles.roundButton1}
         >
           <Icon2 name="chrome" size={30} />
         </TouchableOpacity>
-        {show == true ? (
-          <TouchableOpacity
-            onPress={buttonClickedHandler}
-            style={styles.roundButton2}
-          >
-            <Icon2 name="star" size={30} />
-          </TouchableOpacity>
-        ) : null}
-        {show == true ? (
-          <TouchableOpacity
-            onPress={buttonClickedHandler}
-            style={styles.roundButton2}
-          >
-            <Icon2 name="info-circle" size={30} />
-          </TouchableOpacity>
-        ) : null}
-        {show == true ? (
-          <TouchableOpacity
-            onPress={buttonClickedHandler}
-            style={styles.roundButton2}
-          >
-            <Icon2 name="sliders-h" size={30} />
-          </TouchableOpacity>
-        ) : null}
+
+        <SearchableDropdown
+          multi={true}
+          onItemSelect={(item) => {
+            const items = selectedItems;
+            items.push(item);
+            this.setState({ selectedItems: items });
+          }}
+          containerStyle={{ marginTop: 5, marginStart: 10, width: 300, padding: 5, backgroundColor: "white" }}
+          itemStyle={{
+            padding: 10,
+            marginTop: 2,
+            marginStart: 10,
+            marginEnd: 10,
+            backgroundColor: "#ddd",
+            borderColor: "#bbb",
+            borderWidth: 1,
+            borderRadius: 5,
+          }}
+          itemTextStyle={{ color: "#222" }}
+          itemsContainerStyle={{ maxHeight: 140 }}
+          items={items}
+          defaultIndex={2}
+          chip={true}
+          resetValue={false}
+          textInputProps={{
+            placeholder: "placeholder",
+            underlineColorAndroid: "transparent",
+            style: {
+              padding: 12,
+              borderWidth: 1,
+              borderColor: "#ccc",
+              borderRadius: 5,
+            },
+            onTextChange: (text) => alert(text),
+          }}
+          listProps={{
+            nestedScrollEnabled: true,
+          }}
+        />
       </View>
+
+      {show == true ? (
+        <TouchableOpacity
+          onPress={buttonClickedHandler}
+          style={styles.roundButton2}
+        >
+          <Icon2 name="star" size={30} />
+        </TouchableOpacity>
+      ) : null}
+      {show == true ? (
+        <TouchableOpacity
+          onPress={buttonClickedHandler}
+          style={styles.roundButton2}
+        >
+          <Icon2 name="info-circle" size={30} />
+        </TouchableOpacity>
+      ) : null}
+      {show == true ? (
+        <TouchableOpacity
+          onPress={buttonClickedHandler}
+          style={styles.roundButton2}
+        >
+          <Icon2 name="sliders-h" size={30} />
+        </TouchableOpacity>
+      ) : null}
+
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("Modal2");
