@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/stack";
 
 import Start from "../screens/start";
+import TabNavigator from "../navigator/tabNavigator";
 import Modal from "../screens/modal";
 import Modal2 from "../screens/modal2";
 
@@ -14,7 +15,13 @@ const RootStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Group>
-        <Stack.Screen name="Home" component={Start} />
+        <Stack.Screen
+          name="Home"
+          component={TabNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen

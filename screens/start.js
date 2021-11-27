@@ -12,15 +12,10 @@ import {
 import MapView, { Marker, Callout } from "react-native-maps";
 import { Searchbar } from "react-native-paper";
 import CustomCallout from "../components/customCallout";
+import Icon2 from 'react-native-vector-icons/FontAwesome5';
 
 const styles = StyleSheet.create({
-  customView: {
-    width: 200,
-    height: 500,
-  },
-  container: {
-    ...StyleSheet.absoluteFillObject,
-  },
+
   screen: {
     flex: 1,
     justifyContent: "center",
@@ -46,15 +41,16 @@ const styles = StyleSheet.create({
     backgroundColor: "lightblue",
   },
   roundButton3: {
-    marginTop: 500,
+    marginTop: 10,
     marginStart: 5,
-    width: 55,
+    width: 200,
     height: 55,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
-    borderRadius: 100,
+    borderRadius: 30,
     backgroundColor: "lightblue",
+    alignSelf: "flex-end"
   },
   containerContent: { flex: 1, marginTop: 40 },
   containerHeader: {
@@ -72,12 +68,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#005252",
     marginTop: 0,
   },
-
+  customView: {
+    width: 200,
+    height: 200,
+  },
+  container: {
+    ...StyleSheet.absoluteFillObject,
+  },
   map: {
     ...StyleSheet.absoluteFillObject,
-    marginStart: 10,
-    marginEnd: 10,
-    marginBottom: 60
+    marginTop: 35
   },
 });
 
@@ -220,6 +220,9 @@ const Start = ({ navigation }) => {
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
+        style={{
+          marginTop: 35
+        }}
       />
       {/* {activeSearch ? data?.filter(megaFilter)=>{return <Text>{object.gorod}</Text>}) : null} */}
 
@@ -231,14 +234,14 @@ const Start = ({ navigation }) => {
           }}
           style={styles.roundButton1}
         >
-          <Text>I'm a button</Text>
+          <Icon2 name="chrome" size={30}/>
         </TouchableOpacity>
         {show == true ? (
           <TouchableOpacity
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Text>*</Text>
+            <Icon2 name="star" size={30}/>
           </TouchableOpacity>
         ) : null}
         {show == true ? (
@@ -246,7 +249,7 @@ const Start = ({ navigation }) => {
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Text>I</Text>
+            <Icon2 name="info-circle" size={30}/>
           </TouchableOpacity>
         ) : null}
         {show == true ? (
@@ -254,7 +257,7 @@ const Start = ({ navigation }) => {
             onPress={buttonClickedHandler}
             style={styles.roundButton2}
           >
-            <Text>Filter</Text>
+            <Icon2 name="sliders-h" size={30}/>
           </TouchableOpacity>
         ) : null}
       </View>

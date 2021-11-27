@@ -13,6 +13,8 @@ const TabNavigator = ({}) => {
                 name="Start"
                 component={Start}
                 options={{
+                    tabBarShowLabel: true,
+                    headerShown: false,
                     tabBarLabel: 'UseStateLab',
                     tabBarIcon: ({color}) => (
                         <Icon2 name="chrome" color={color} size={30}/>
@@ -24,6 +26,7 @@ const TabNavigator = ({}) => {
                 component={Second}
                 options={{
                     tabBarLabel: 'TodoList',
+                    tabBarShowLabel: false,
                     tabBarIcon: ({color}) => (
                         <Icon2 name="playstation" color={color} size={30}/>
                     ),
