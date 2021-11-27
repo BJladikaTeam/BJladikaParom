@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import ShipListItem from "../components/shipListItem";
 
@@ -26,28 +26,40 @@ const styles = StyleSheet.create({
   },
 });
 
-const Third = ({navigation}) => {
+const Third = ({ navigation }) => {
   const [data, setData] = useState([]);
   useEffect(() => {});
 
   const items = [
     {
-      id: 1,
-      body: "Жатай",
+      id: "Жатай - Речной порт",
+      body: "Подушка",
+      date: "01.12.2021 16:45",
       key: 1,
-      author_key: 1,
+      author_key: 12,
+      type: 1,
     },
     {
-      id: 2,
-      body: "Техтюр",
+      id: "Жатай - Марха",
+      body: "Паром",
+      date: "11.12.2021 21:45",
       key: 4,
       author_key: 1,
+      type: 2,
+    },
+    {
+      id: "Город - Город",
+      body: "Паром",
+      date: "13.12.2021 21:45",
+      key: 18,
+      author_key: 1,
+      type: 1,
     },
   ];
 
   return (
     <SafeAreaView>
-      <ScrollView style={{ marginTop: 20 }}>
+      <ScrollView style={{ marginTop: 60 }}>
         {items.map((item) => {
           return (
             <ShipListItem
@@ -55,24 +67,13 @@ const Third = ({navigation}) => {
               body={item.body}
               key={item.key}
               author_key={item.author_key}
+              date={item.date}
               navigation={navigation}
+              type={item.type}
             ></ShipListItem>
           );
         })}
       </ScrollView>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>In the name of the BJladika!</Text>
-      <TouchableOpacity
-        style={styles.tch_opacity_logout}
-        title={"Log In"}
-        onPress={() => {
-          navigation.push("MegaMind");
-        }}
-      >
-        <Text style={{ fontSize: 18, marginTop: 18, color: "white" }}>
-          Edit Account
-        </Text>
-      </TouchableOpacity>
       <StatusBar style="auto" />
     </SafeAreaView>
   );

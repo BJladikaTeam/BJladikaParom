@@ -252,7 +252,7 @@ const Start = ({ navigation }) => {
           }}
           style={styles.roundButton1}
         >
-          <Icon2 name="chrome" size={30} />
+          <Icon2 name="user" size={30} />
         </TouchableOpacity>
 
         <SearchableDropdown
@@ -280,7 +280,7 @@ const Start = ({ navigation }) => {
           chip={true}
           resetValue={false}
           textInputProps={{
-            placeholder: "placeholder",
+            placeholder: "Поиск",
             underlineColorAndroid: "transparent",
             style: {
               padding: 12,

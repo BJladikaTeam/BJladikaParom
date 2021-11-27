@@ -11,6 +11,7 @@ import Modal2 from "../screens/modal2";
 import ModalShipDetail from "../screens/modalShipDetail";
 import PageShipDetail from "../screens/pageShipDetail";
 import ProfileUser from "../screens/profileUser";
+import QrCode from "../screens/qrCode";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,13 @@ const RootStackNavigator = () => {
         <Stack.Screen
           name="Profile"
           component={ProfileUser}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="QrCode"
+          component={QrCode}
           options={{
             headerShown: false,
           }}

@@ -9,7 +9,6 @@ import {
   StyleSheet,
 } from "react-native";
 
-
 import image1 from "../images/ferry.png";
 import image2 from "../images/ship.png";
 
@@ -56,28 +55,30 @@ const randomIndex = () => {
   return rand;
 };
 
-const ShipListItem = ({navigation, title, body, author_key }) => {
+const ShipListItem = ({ navigation, title, body, date, author_key, type }) => {
   return (
-    <TouchableOpacity style={styles.mainContainer} onPress={() => {
-        console.log({body})
-        navigation.push("MegaMind")
-
-        }}>
+    <TouchableOpacity
+      style={styles.mainContainer}
+      onPress={() => {
+        console.log({ body });
+        navigation.push("MegaMind");
+      }}
+    >
       <View style={styles.paddings}>
         <View style={styles.image_and_text_row}>
-          <ImageBackground
-            source={randomArrayImage[randomIndex()]}
-            style={styles.image_round}
-          />
+          {type == 1 ? (
+            <ImageBackground source={image1} style={styles.image_round} />
+          ) : null}
+          {type == 2 ? (
+            <ImageBackground source={image2} style={styles.image_round} />
+          ) : null}
 
           <View style={{ marginLeft: 10 }}>
             <Text numberOfLines={1} style={styles.text_title}>
               {title}
             </Text>
 
-            <Text style={styles.text_author}>
-              Posted by author_{randomIndex()}
-            </Text>
+            <Text style={styles.text_author}>{date}</Text>
           </View>
         </View>
 

@@ -15,20 +15,9 @@ const TabNavigator = ({}) => {
         component={Start}
         options={{
           headerShown: false,
-          tabBarLabel: "UseStateLab",
+          tabBarLabel: "Карта",
           tabBarIcon: ({ color }) => (
-            <Icon2 name="chrome" color={color} size={30} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Second"
-        component={Second}
-        options={{
-          tabBarLabel: "TodoList",
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color }) => (
-            <Icon2 name="playstation" color={color} size={30} />
+            <Icon2 name="map-marked" color={color} size={30} />
           ),
         }}
       />
@@ -36,10 +25,10 @@ const TabNavigator = ({}) => {
         name="Third"
         component={Third}
         options={{
-          tabBarLabel: "TodoList",
-          tabBarShowLabel: false,
+          tabBarLabel: "Список Рейсов",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Icon2 name="playstation" color={color} size={30} />
+            <Icon2 name="th-list" color={color} size={30} />
           ),
         }}
       />
