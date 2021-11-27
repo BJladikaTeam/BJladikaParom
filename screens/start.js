@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 100,
     backgroundColor: "orange",
+    marginStart: 5
   },
   roundButton2: {
     marginStart: 5,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: "lightblue",
   },
   roundButton3: {
-    marginTop: 10,
+    marginTop: 725,
     marginStart: 5,
     width: 200,
     height: 55,
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 30,
     backgroundColor: "lightblue",
-    alignSelf: "flex-end"
+    alignSelf: "center",
+    position: "absolute"
   },
   containerContent: { flex: 1, marginTop: 40 },
   containerHeader: {
@@ -69,11 +71,12 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   customView: {
-    width: 200,
-    height: 200,
+    width: 140,
+    height: 140,
   },
   container: {
     ...StyleSheet.absoluteFillObject,
+    flexDirection: "column"
   },
   map: {
     ...StyleSheet.absoluteFillObject,
