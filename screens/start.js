@@ -7,11 +7,20 @@ import {
   TouchableOpacity,
   StyleSheet,
   Picker,
+  Touchable,
 } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { Searchbar } from "react-native-paper";
+import CustomCallout from "../components/customCallout";
 
 const styles = StyleSheet.create({
+  customView: {
+    width: 200,
+    height: 500,
+  },
+  container: {
+    ...StyleSheet.absoluteFillObject,
+  },
   screen: {
     flex: 1,
     justifyContent: "center",
@@ -27,6 +36,17 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
   },
   roundButton2: {
+    marginStart: 5,
+    width: 55,
+    height: 55,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: "lightblue",
+  },
+  roundButton3: {
+    marginTop: 500,
     marginStart: 5,
     width: 55,
     height: 55,
@@ -52,11 +72,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#005252",
     marginTop: 0,
   },
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    marginStart: 10,
+    marginEnd: 10,
+    marginBottom: 60
+  },
 });
+
+const initialButtons = [
+  { text: "qwe", color: "red" },
+  { text: "alpha", color: "blue" },
+  { text: "asd", color: "orange" },
+];
 
 const Start = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
+
+  const [listButtons, setListButtons] = useState(initialButtons);
 
   const data = [
     {
@@ -127,8 +162,60 @@ const Start = ({ navigation }) => {
 
   const [show, setShow] = useState(false);
 
+  const renderButtons = () => {
+    return buttonList.map(() => {
+      return (
+        <TouchableOpacity onPress={() => setListButtons()}></TouchableOpacity>
+      );
+    });
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 62.03389,
+          longitude: 129.73306,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Marker title={"203 Микрорайон"} coordinate={micro203}>
+          <Callout style={{ borderRadius: 100 }}>
+            <View style={{ borderRadius: 25 }}>
+              <Text>203 Микрорайон</Text>
+              <Text>Вставить кнопки, дизайн</Text>
+            </View>
+          </Callout>
+        </Marker>
+
+        <Marker title={"Нижний Бестях"} coordinate={bottomBestiah}>
+          <Callout
+            alphaHitTest
+            tooltip
+            onPress={(e) => {
+              if (
+                e.nativeEvent.action === "marker-inside-overlay-press" ||
+                e.nativeEvent.action === "callout-inside-press"
+              ) {
+                return;
+              }
+            }}
+            style={styles.customView}
+          >
+            <CustomCallout>
+              <Text
+                style={{ alignSelf: "center", textAlign: "center" }}
+              >{`Нижний Бестях`}</Text>
+              <Text
+                style={{ alignSelf: "center", textAlign: "center" }}
+              >{`Дизайн Вставить кнопки`}</Text>
+            </CustomCallout>
+          </Callout>
+        </Marker>
+      </MapView>
+
       <Searchbar
         placeholder="Search"
         onChangeText={onChangeSearch}
@@ -146,54 +233,36 @@ const Start = ({ navigation }) => {
         >
           <Text>I'm a button</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={buttonClickedHandler}
-          style={styles.roundButton2}
-        >
-          <Text>*</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={buttonClickedHandler}
-          style={styles.roundButton2}
-        >
-          <Text>I</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={buttonClickedHandler}
-          style={styles.roundButton2}
-        >
-          <Text>Filter</Text>
-        </TouchableOpacity>
+        {show == true ? (
+          <TouchableOpacity
+            onPress={buttonClickedHandler}
+            style={styles.roundButton2}
+          >
+            <Text>*</Text>
+          </TouchableOpacity>
+        ) : null}
+        {show == true ? (
+          <TouchableOpacity
+            onPress={buttonClickedHandler}
+            style={styles.roundButton2}
+          >
+            <Text>I</Text>
+          </TouchableOpacity>
+        ) : null}
+        {show == true ? (
+          <TouchableOpacity
+            onPress={buttonClickedHandler}
+            style={styles.roundButton2}
+          >
+            <Text>Filter</Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
-
-      <MapView
-        style={{
-          width: "75%",
-          height: "60%",
-          marginStart: 10,
-          marginEnd: 10,
-          marginTop: 10,
-        }}
-        initialRegion={{
-          latitude: 62.03389,
-          longitude: 129.73306,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Marker title={"Нижний Бестях"} coordinate={micro203}>
-          <Callout>
-            <Text>Нижний Бестях</Text>
-            <Text>Вставить кнопки, дизайн</Text>
-          </Callout>
-        </Marker>
-      </MapView>
-
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("Modal2");
         }}
-        style={styles.roundButton2}
+        style={styles.roundButton3}
       >
         <Text>DOODOD</Text>
       </TouchableOpacity>
