@@ -14,7 +14,6 @@ import { Searchbar } from "react-native-paper";
 import CustomCallout from "../components/customCallout";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
 import SearchableDropdown from "react-native-searchable-dropdown";
-import SearchableDropDown from "react-native-searchable-dropdown";
 
 const styles = StyleSheet.create({
   screen: {
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "orange",
     marginStart: 5,
-    marginTop: 10
+    marginTop: 10,
   },
   roundButton2: {
     marginStart: 5,
@@ -106,7 +105,17 @@ const Start = ({ navigation }) => {
     {
       id: 2,
       name: "Техтюр",
-      key: 1,
+      key: 2,
+    },
+    {
+      id: 3,
+      name: "203 Мкр",
+      key: 3,
+    },
+    {
+      id: 4,
+      name: "Нижний Бестях",
+      key: 4,
     },
   ];
 
@@ -256,13 +265,17 @@ const Start = ({ navigation }) => {
         </TouchableOpacity>
 
         <SearchableDropdown
-          multi={true}
+          onTextChange={(text) => console.log(text)}
           onItemSelect={(item) => {
-            const items = selectedItems;
-            items.push(item);
-            this.setState({ selectedItems: items });
+            alert(JSON.stringify(item));
           }}
-          containerStyle={{ marginTop: 5, marginStart: 10, width: 300, padding: 5, backgroundColor: "white" }}
+          containerStyle={{
+            marginTop: 5,
+            marginStart: 10,
+            width: 300,
+            padding: 5,
+            backgroundColor: "white",
+          }}
           itemStyle={{
             padding: 10,
             marginTop: 2,
@@ -277,7 +290,6 @@ const Start = ({ navigation }) => {
           itemsContainerStyle={{ maxHeight: 140 }}
           items={items}
           defaultIndex={2}
-          chip={true}
           resetValue={false}
           textInputProps={{
             placeholder: "Поиск",

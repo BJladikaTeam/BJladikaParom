@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import { Marker, MapView } from "react-native-maps";
 import { Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import PassengerListItem from "../components/passengerListItem";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Second = () => {
+const CaptainQrScanner = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -37,7 +46,7 @@ const Second = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={[
@@ -45,7 +54,7 @@ const Second = () => {
           { marginTop: 50, height: 400, width: 400 },
         ]}
       />
-      <View style={{marginTop: -300, width: 200, alignSelf: "center"}}>
+      <View style={{ marginTop: -300, width: 200, alignSelf: "center" }}>
         {scanned && (
           <Button
             title={"Tap to Scan Again"}
@@ -53,8 +62,18 @@ const Second = () => {
           />
         )}
       </View>
-    </View>
+
+      <View style={{ marginTop: 600 }}>
+        <ScrollView>
+          <PassengerListItem></PassengerListItem>
+          <PassengerListItem></PassengerListItem>
+          <PassengerListItem></PassengerListItem>
+          <PassengerListItem></PassengerListItem>
+          <PassengerListItem></PassengerListItem>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default Second;
+export default CaptainQrScanner;

@@ -12,6 +12,9 @@ import ModalShipDetail from "../screens/modalShipDetail";
 import PageShipDetail from "../screens/pageShipDetail";
 import ProfileUser from "../screens/profileUser";
 import QrCode from "../screens/qrCode";
+import Second from "../screens/second";
+import ProfileCaptain from "../screens/profileCaptain";
+import CaptainQrScanner from "../screens/captainQrScanner";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +30,20 @@ const RootStackNavigator = () => {
           }}
         />
         <Stack.Screen
+          name="Second"
+          component={Second}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CaptainQrScanner"
+          component={CaptainQrScanner}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="MegaMind"
           component={PageShipDetail}
           options={{
@@ -36,6 +53,13 @@ const RootStackNavigator = () => {
         <Stack.Screen
           name="Profile"
           component={ProfileUser}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ProfileCaptain"
+          component={ProfileCaptain}
           options={{
             headerShown: false,
           }}
