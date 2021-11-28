@@ -32,28 +32,60 @@ const Third = ({ navigation }) => {
 
   const items = [
     {
-      id: "Жатай - Речной порт",
-      body: "Подушка",
+      way: "203 мкр - Нижний Бестях",
+      type: 1,
+      type_name: "Подушка",
       date: "01.12.2021 16:45",
-      key: 1,
-      author_key: 12,
-      type: 1,
+      spaces: 13,
+      taken: 4,
     },
     {
-      id: "Жатай - Марха",
-      body: "Паром",
-      date: "11.12.2021 21:45",
-      key: 4,
-      author_key: 1,
+      way: "Нижний Бестях - 203 мкр",
       type: 2,
+      type_name: "Паром",
+      date: "11.12.2021 21:45",
+      spaces: 88,
+      taken: 16,
     },
     {
-      id: "Город - Город",
-      body: "Паром",
-      date: "13.12.2021 21:45",
-      key: 18,
-      author_key: 1,
+      way: "Нижний Бестях - 203 мкр",
       type: 1,
+      type_name: "Подушка",
+      date: "13.12.2021 21:45",
+      spaces: 88,
+      taken: 16,
+    },
+    {
+      way: "203 мкр - Нижний Бестях",
+      type: 1,
+      type_name: "Подушка",
+      date: "01.12.2021 16:45",
+      spaces: 13,
+      taken: 4,
+    },
+    {
+      way: "203 мкр - Нижний Бестях",
+      type: 1,
+      type_name: "Подушка",
+      date: "01.12.2021 16:45",
+      spaces: 13,
+      taken: 4,
+    },
+    {
+      way: "203 мкр - Нижний Бестях",
+      type: 1,
+      type_name: "Подушка",
+      date: "01.12.2021 16:45",
+      spaces: 13,
+      taken: 4,
+    },
+    {
+      way: "203 мкр - Нижний Бестях",
+      type: 1,
+      type_name: "Подушка",
+      date: "01.12.2021 16:45",
+      spaces: 13,
+      taken: 4,
     },
   ];
 
@@ -63,13 +95,13 @@ const Third = ({ navigation }) => {
         {items.map((item) => {
           return (
             <ShipListItem
-              title={item.id}
-              body={item.body}
-              key={item.key}
-              author_key={item.author_key}
-              date={item.date}
-              navigation={navigation}
+              way={item.way}
               type={item.type}
+              type_name={item.type_name}
+              date={item.date}
+              spaces={item.spaces}
+              taken={item.taken}
+              navigation={navigation}
             ></ShipListItem>
           );
         })}

@@ -21,12 +21,17 @@ const Second = () => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
+      console.log("Permissions for user scanner")
+      console.log(status)
+      console.log(scanned)
+      console.log("=======")
     })();
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    console.log(scanned)
   };
 
   if (hasPermission === null) {
@@ -39,7 +44,8 @@ const Second = () => {
   return (
     <View style={styles.container}>
       <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        onBarCodeScanned={console.log(scanned),
+          scanned ? console.log("Fail"): handleBarCodeScanned}
         style={[
           StyleSheet.absoluteFillObject,
           { marginTop: 50, height: 400, width: 400 },

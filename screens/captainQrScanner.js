@@ -8,8 +8,6 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import { Marker, MapView } from "react-native-maps";
-import { Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import PassengerListItem from "../components/passengerListItem";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -24,12 +22,14 @@ const styles = StyleSheet.create({
 
 const CaptainQrScanner = () => {
   const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  const [scanned_v2, setScanned] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
+      console.log(status)
+      console.log(scanned_v2)
     })();
   }, []);
 
@@ -48,14 +48,14 @@ const CaptainQrScanner = () => {
   return (
     <SafeAreaView style={styles.container}>
       <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        onBarCodeScanned={scanned_v2 ? console.log("Fail") : handleBarCodeScanned}
         style={[
           StyleSheet.absoluteFillObject,
           { marginTop: 50, height: 400, width: 400 },
         ]}
       />
-      <View style={{ marginTop: -300, width: 200, alignSelf: "center" }}>
-        {scanned && (
+      <View style={[{ marginTop: 400, alignSelf: "center" }]}>
+        {scanned_v2 && (
           <Button
             title={"Tap to Scan Again"}
             onPress={() => setScanned(false)}
@@ -63,8 +63,10 @@ const CaptainQrScanner = () => {
         )}
       </View>
 
-      <View style={{ marginTop: 600 }}>
+      <View style={{ marginTop: 300 }}>
         <ScrollView>
+          <PassengerListItem></PassengerListItem>
+          <PassengerListItem></PassengerListItem>
           <PassengerListItem></PassengerListItem>
           <PassengerListItem></PassengerListItem>
           <PassengerListItem></PassengerListItem>

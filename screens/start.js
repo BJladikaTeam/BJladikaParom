@@ -12,7 +12,9 @@ import {
 import MapView, { Marker, Callout } from "react-native-maps";
 import { Searchbar } from "react-native-paper";
 import CustomCallout from "../components/customCallout";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon2 from "react-native-vector-icons/FontAwesome5";
+import Icon3 from "react-native-vector-icons/Fontisto";
 import SearchableDropdown from "react-native-searchable-dropdown";
 
 const styles = StyleSheet.create({
@@ -138,6 +140,16 @@ const Start = ({ navigation }) => {
     longitude: 129.7917830407309,
   };
 
+  const randomPoint2 = {
+    latitude: 62.03893126501677,
+    longitude: 129.77432730835264,
+  };
+
+  const sittingPoint = {
+    latitude: 62.04722639263459,
+    longitude: 129.77515957914127,
+  };
+
   const way = [
     {
       latitude: 62.10629142237101,
@@ -192,25 +204,117 @@ const Start = ({ navigation }) => {
         }}
       >
         <Marker title={"203 Микрорайон"} coordinate={micro203}>
-          <Callout style={{ borderRadius: 100 }}>
-            <View style={{ borderRadius: 25 }}>
-              <Text>203 Микрорайон</Text>
-              <Text>Вставить кнопки, дизайн</Text>
+          <View>
+            <Icon name="anchor" size={50} color="blue" />
+          </View>
+          <Callout style={{ borderRadius: 100, width: 200 }}>
+            <View style={{ borderRadius: 25, alignItems: "center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon name="anchor" size={30} color="blue" />
+                <Text style={{ marginStart: 5 }}>203 Микрорайон</Text>
+              </View>
+              <View
+                style={{
+                  marginTop: 5,
+                  flexDirection: "row",
+                  borderWidth: 3,
+                  borderRadius: 10,
+                }}
+              >
+                <View style={{ marginStart: 10, marginBottom: 5}}>
+                  <Icon2 name="clock" size={20} color="green"></Icon2>
+                  <Icon3 name="sait-boat" size={20} color="black"/>
+                </View>
+                <View style={{ marginStart: 5, marginEnd: 10, alignItems: "center"}}>
+                  <Text>Оплытие в 20:20</Text>
+                  <Text>Заполнение: 8/9</Text>
+                </View>
+              </View>
             </View>
           </Callout>
         </Marker>
-
-        <Marker title={"98"} coordinate={randomPoint1}>
+        <Marker title={"Riding Ship"} coordinate={randomPoint1}>
+          <View>
+            <Icon name="ferry" size={30} />
+          </View>
           <Callout
-            style={{ borderRadius: 100 }}
+            style={{ width: 200, borderRadius: 50 }}
             onPress={() => {
               navigation.navigate("ModalShipDetail");
             }}
           >
-            <View style={{ borderRadius: 25 }}>
-              <Icon2 name="biking" size={30} />
-              <Text>Лодочка</Text>
-              <Text>Вставить кнопки, дизайн</Text>
+            <View style={{ borderRadius: 25, alignItems: "center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon name="ferry" size={30} />
+                <Text style={{ marginStart: 5 }}>Время прибытия: 18:33</Text>
+              </View>
+              <Text>203 мкр - Нижний Бестях</Text>
+            </View>
+          </Callout>
+        </Marker>
+
+        <Marker title={"Riding Boat"} coordinate={randomPoint2}>
+          <View>
+            <Icon3 name="sait-boat" size={30} />
+          </View>
+          <Callout
+            style={{ width: 200 }}
+            onPress={() => {
+              navigation.navigate("ModalShipDetail");
+            }}
+          >
+            <View style={{ borderRadius: 25, alignItems: "center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon3 name="sait-boat" size={30} />
+                <Text style={{ marginStart: 5 }}>Время прибытия: 19:17</Text>
+              </View>
+              <Text>203 мкр - Нижний Бестях</Text>
+            </View>
+          </Callout>
+        </Marker>
+
+        <Marker title={"Sitting Boat"} coordinate={sittingPoint}>
+          <View>
+            <Icon3 name="sait-boat" size={30} />
+          </View>
+          <Callout
+            style={{ width: 200, borderRadius: 50 }}
+            onPress={() => {
+              navigation.navigate("ModalShipDetail");
+            }}
+          >
+            <View style={{ borderRadius: 25, alignItems: "center" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon3 name="sait-boat"  size={30} />
+                <Text style={{ marginStart: 5 }}>Время отплытия: 20:20</Text>
+
+              </View>
+              <Text style={{ marginStart: 5 }}>Заполненность: 8/9</Text>
+              <Text>203 мкр - Нижний Бестях</Text>
             </View>
           </Callout>
         </Marker>

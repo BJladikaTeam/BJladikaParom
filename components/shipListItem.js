@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon2 from "react-native-vector-icons/FontAwesome5";
+import Icon3 from "react-native-vector-icons/Fontisto";
 
 import image1 from "../images/ferry.png";
 import image2 from "../images/ship.png";
@@ -22,12 +25,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginStart: 20,
     marginEnd: 20,
-    borderRadius: 50,
+    borderRadius: 40,
     backgroundColor: "#FAEBD7",
     padding: 20,
   },
   text_title: {
-    fontSize: 24,
+    fontSize: 16,
   },
   text_author: {
     marginTop: 0,
@@ -55,16 +58,27 @@ const randomIndex = () => {
   return rand;
 };
 
-const ShipListItem = ({ navigation, title, body, date, author_key, type }) => {
+const ShipListItem = ({
+  navigation,
+  way,
+  type,
+  type_name,
+  date,
+  spaces,
+  taken,
+}) => {
   return (
     <TouchableOpacity
       style={styles.mainContainer}
       onPress={() => {
-        console.log({ body });
         navigation.push("MegaMind");
       }}
     >
       <View style={styles.paddings}>
+        <Text style={{ alignSelf: "center", fontSize: 18, fontWeight: "bold" }}>
+          {way}
+        </Text>
+
         <View style={styles.image_and_text_row}>
           {type == 1 ? (
             <ImageBackground source={image1} style={styles.image_round} />
@@ -75,16 +89,40 @@ const ShipListItem = ({ navigation, title, body, date, author_key, type }) => {
 
           <View style={{ marginLeft: 10 }}>
             <Text numberOfLines={1} style={styles.text_title}>
-              {title}
+              {type == 1 ? <Icon3 name="sait-boat" size={20} /> : null}
+              {type == 2 ? <Icon name="ferry" size={20} /> : null} {type_name}
             </Text>
 
-            <Text style={styles.text_author}>{date}</Text>
+            <Text style={styles.text_author}>
+              Заполненность: {taken}/{spaces}
+            </Text>
+            <Text numberOfLines={3} style={{ marginTop: 8 }}>
+              {date}
+            </Text>
           </View>
         </View>
-
-        <Text numberOfLines={3} style={{ marginTop: 8 }}>
-          {body}
-        </Text>
+        <TouchableOpacity
+          style={[
+            styles.tch_opacity_logout,
+            {
+              backgroundColor: "lightblue",
+              marginTop: 125,
+              alignSelf: "center",
+              width: "50%",
+              height: 30,
+              position: "absolute",
+              borderRadius: 30,
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          ]}
+          title={"Log In"}
+          onPress={() => {
+            navigation.push("MegaMind");
+          }}
+        >
+          <Text style={{ fontSize: 12, color: "white" }}>Подробности</Text>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
